@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:machine_test_neetable/core/constants/constants.dart';
 
@@ -19,7 +20,7 @@ class UserDetailsWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          AutoSizeText(
             text,
             style: TextStyle(color: textColor, fontSize: fontSize),
           ),

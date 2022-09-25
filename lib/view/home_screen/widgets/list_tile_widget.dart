@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import 'package:machine_test_neetable/core/constants/constants.dart';
@@ -31,12 +32,12 @@ class ListTileWidget extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                AutoSizeText(
                   results.name?.first ?? "No Data".toString(),
-                  style: TextStyle(fontSize: 25.0 * textScale),
+                  style: const TextStyle(fontSize: 20),
                 ),
-                Text(results.login?.username ?? "UserName not found",
-                    style: TextStyle(fontSize: 18.0 * textScale))
+                AutoSizeText(results.login?.username ?? "UserName not found",
+                    style: const TextStyle(fontSize: 18)),
               ],
             ),
             const Spacer(),

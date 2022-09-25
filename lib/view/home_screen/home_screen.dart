@@ -12,36 +12,45 @@ import 'widgets/list_tile_widget.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
+  Future<void> _loadResources(bool reload) async {
+    await Get.find<UsersListController>().getUsersList();
+  }
+
   @override
   Widget build(BuildContext context) {
-    UserModel userModel;
     return SafeArea(child: Scaffold(body: GetBuilder<UsersListController>(
       builder: (userListController) {
         return userListController.isLoaded
-            ? ListView.separated(
-                scrollDirection: Axis.vertical,
-                itemCount: userListController.usersList.length,
-                itemBuilder: ((context, index) {
-                  return InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => UserDetailsPage(
-                                  index: index,
-                                  results: userListController.usersList[index],
-                                )),
-                      );
-                    },
-                    child: ListTileWidget(
-                      index: index,
-                      results: userListController.usersList[index],
-                    ),
-                  );
-                }),
-                separatorBuilder: (BuildContext context, int index) =>
-                    const Divider(
-                  thickness: 1,
+            ? RefreshIndicator(
+                onRefresh: () async {
+                  await _loadResources(true);
+                },
+                child: ListView.separated(
+                  scrollDirection: Axis.vertical,
+                  itemCount: userListController.usersList.length,
+                  itemBuilder: ((context, index) {
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UserDetailsPage(
+                                    index: index,
+                                    results:
+                                        userListController.usersList[index],
+                                  )),
+                        );
+                      },
+                      child: ListTileWidget(
+                        index: index,
+                        results: userListController.usersList[index],
+                      ),
+                    );
+                  }),
+                  separatorBuilder: (BuildContext context, int index) =>
+                      const Divider(
+                    thickness: 1,
+                  ),
                 ),
               )
             : const Center(child: ListTileShimmerWidget());

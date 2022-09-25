@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:machine_test_neetable/model/user_model.dart';
@@ -23,16 +24,15 @@ class UsersListController extends GetxController {
       if (response.statusCode == 200) {
         var result = response.body;
 
-        print(result);
-
         _usersList = [];
         _usersList.addAll(UserModel.fromJson(result).userData);
 
-        print(_usersList);
         _isLoading = true;
 
         update();
       } else {}
-    } catch (e) {}
+    } catch (e) {
+      log(e.toString());
+    }
   }
 }

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:machine_test_neetable/core/colors/colors.dart';
 import 'package:machine_test_neetable/model/user_model.dart';
@@ -47,10 +48,10 @@ class ProfileImageContainer extends StatelessWidget {
                         ),
                       ))),
               kHight10,
-              Text(
+              AutoSizeText(
                 "@ ${results.login!.username}".toString(),
-                style: TextStyle(
-                    fontSize: 22.0 * textScale,
+                style: const TextStyle(
+                    fontSize: 22,
                     color: kWhiteColor,
                     fontWeight: FontWeight.bold),
               )

@@ -14,10 +14,9 @@ class UserDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textScale = MediaQuery.of(context).textScaleFactor;
     var size = MediaQuery.of(context).size;
-    var textHead = 22.0 * textScale;
-    var textBody = 25.0 * textScale;
+    double textHead = 22;
+    double textBody = 25;
     var controller = Get.find<UsersListController>();
     return SafeArea(
         child: Scaffold(

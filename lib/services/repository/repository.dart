@@ -4,9 +4,10 @@ import 'package:machine_test_neetable/services/apiclient/api_client.dart';
 
 class UsersRepository extends GetxService {
   final ApiClient apiClient;
-  int? resultCount;
 
-  UsersRepository({required this.apiClient, this.resultCount = 10});
+  UsersRepository({
+    required this.apiClient,
+  });
 
   Future<Response> getUsersData() async {
     return await apiClient.getData("");
